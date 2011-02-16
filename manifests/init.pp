@@ -54,7 +54,7 @@ class yumconfig::ciupicrirepo {
         enabled         => '1',
         gpgcheck        => '0',
         gpgkey          => "file:///mnt/misc/${operatingsystem}-ciupicri-repo/RPM-GPG-KEY-ciupicri",
-        metadata_expire => '-1',
+        metadata_expire => '0',
         cost            => '500',
         priority        => '1',
     }
