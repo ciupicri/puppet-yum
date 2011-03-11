@@ -1,9 +1,3 @@
-class yumconfig::common {
-    file { "/mnt/misc":
-        ensure => directory,
-    }
-}
-
 class yumconfig::mediarepo {
     include yumconfig::common
 
