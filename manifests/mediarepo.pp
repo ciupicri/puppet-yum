@@ -1,4 +1,4 @@
-class yumconfig::mediarepo {
+class yumconfig::mediarepo::base {
     include yumconfig::common
 
     file { "/mnt/misc/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD":
@@ -15,13 +15,27 @@ class yumconfig::mediarepo {
     }
 
     yumrepo { "media":
-        descr            => 'Fedora $releasever - $basearch media',
-        baseurl          => 'file:///mnt/misc/Fedora-$releasever-$basearch-DVD',
+        descr            => "${operatingsystem} ${operatingsystemrelease} - ${architecture} media",
+        baseurl          => "file:///mnt/misc/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD",
         enabled         => '1',
         gpgcheck        => '0',
         gpgkey          => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$basearch',
         metadata_expire => '-1',
         cost            => '500',
         priority        => '1',
+    }
+}
+
+class yumconfig::mediarepo::centos inherits yumconfig::mediarepo::base {
+    Mount["/mnt/misc/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD"] {
+        fstype => "nfs4",
+    }
+}
+
+class yumconfig::mediarepo {
+    case $operatingsystem {
+        "Fedora": { include base }
+        "CentOS": { include centos }
+        default: { fail("Your operating system is unsupported") }
     }
 }
