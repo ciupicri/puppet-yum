@@ -1,4 +1,4 @@
-class yumconfig::ciupicrirepo {
+class yumconfig::ciupicrirepo::base {
     include yumconfig::common
 
     file { "/mnt/misc/${operatingsystem}-ciupicri-repo":
@@ -23,5 +23,19 @@ class yumconfig::ciupicrirepo {
         metadata_expire => '0',
         cost            => '500',
         priority        => '1',
+    }
+}
+
+class yumconfig::ciupicrirepo::centos inherits yumconfig::ciupicrirepo::base {
+    Mount["/mnt/misc/${operatingsystem}-ciupicri-repo"] {
+        fstype => "nfs4",
+    }
+}
+
+class yumconfig::ciupicrirepo {
+    case $operatingsystem {
+        "Fedora": { include base }
+        "CentOS": { include centos }
+        default: { fail("Your operating system is unsupported") }
     }
 }
