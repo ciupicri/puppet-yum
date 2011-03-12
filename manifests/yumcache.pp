@@ -1,4 +1,4 @@
-class yumconfig::yumcache {
+class yumconfig::yumcache::base {
     include yumconfig::common
 
     mount { "/var/cache/yum":
@@ -24,5 +24,24 @@ class yumconfig::yumcache {
     augeas { "yum":
         context => "/files/etc/yum.conf/main",
         changes => "set keepcache 1",
+    }
+}
+
+class yumconfig::yumcache::centos inherits yumconfig::yumcache::base {
+    Mount["/var/cache/yum"] {
+        device  => "hermes.lizeanunet.tld:/${operatingsystem}-yum-cache/${architecture}/${operatingsystemrelease}",
+        fstype  => "nfs4",
+    }
+
+    Mount["/mnt/misc/yum-packages"] {
+        fstype  => "nfs4",
+    }
+}
+
+class yumconfig::yumcache {
+    case $operatingsystem {
+        "Fedora": { include base }
+        "CentOS": { include centos }
+        default: { fail("Your operating system is unsupported") }
     }
 }
