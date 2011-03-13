@@ -1,5 +1,5 @@
-class yumconfig::mediarepo::base {
-    include yumconfig::common
+class yum::mediarepo::base {
+    include yum::common
 
     file { "/mnt/misc/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD":
         ensure  => directory,
@@ -26,13 +26,13 @@ class yumconfig::mediarepo::base {
     }
 }
 
-class yumconfig::mediarepo::centos inherits yumconfig::mediarepo::base {
+class yum::mediarepo::centos inherits yum::mediarepo::base {
     Mount["/mnt/misc/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD"] {
         fstype => "nfs4",
     }
 }
 
-class yumconfig::mediarepo {
+class yum::mediarepo {
     case $operatingsystem {
         "Fedora": { include base }
         "CentOS": { include centos }
