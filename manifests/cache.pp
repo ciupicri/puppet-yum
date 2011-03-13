@@ -1,4 +1,4 @@
-class yum::yumcache::base {
+class yum::cache::base {
     include yum::common
 
     mount { "/var/cache/yum":
@@ -27,7 +27,7 @@ class yum::yumcache::base {
     }
 }
 
-class yum::yumcache::centos inherits yum::yumcache::base {
+class yum::cache::centos inherits yum::cache::base {
     Mount["/var/cache/yum"] {
         device  => "hermes.lizeanunet.tld:/${operatingsystem}-yum-cache/${architecture}/${operatingsystemrelease}",
         fstype  => "nfs4",
@@ -38,7 +38,7 @@ class yum::yumcache::centos inherits yum::yumcache::base {
     }
 }
 
-class yum::yumcache {
+class yum::cache {
     case $operatingsystem {
         "Fedora": { include base }
         "CentOS": { include centos }
