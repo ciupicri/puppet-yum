@@ -1,4 +1,4 @@
-class yum::ciupicrirepo::base {
+class yum::repos::ciupicri::base {
     include yum::common
 
     file { "/mnt/misc/${operatingsystem}-ciupicri-repo":
@@ -26,13 +26,13 @@ class yum::ciupicrirepo::base {
     }
 }
 
-class yum::ciupicrirepo::centos inherits yum::ciupicrirepo::base {
+class yum::repos::ciupicri::centos inherits yum::repos::ciupicri::base {
     Mount["/mnt/misc/${operatingsystem}-ciupicri-repo"] {
         fstype => "nfs4",
     }
 }
 
-class yum::ciupicrirepo {
+class yum::repos::ciupicri {
     case $operatingsystem {
         "Fedora": { include base }
         "CentOS": { include centos }

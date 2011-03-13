@@ -1,6 +1,6 @@
 class yum {
-    include mediarepo
-    include tmzpuppetrepo
-    include ciupicrirepo
+    include repos::media
+    include repos::tmz-puppet
+    include repos::ciupicri
     include yumcache
 }

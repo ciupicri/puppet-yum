@@ -1,4 +1,4 @@
-class yum::tmzpuppetrepo::fedora {
+class yum::repos::tmz-puppet::fedora {
     yumrepo { "tmz-puppet":
         descr    => 'Puppet for Fedora $releasever - $basearch',
         baseurl  => 'http://tmz.fedorapeople.org/repo/puppet/fedora/$releasever/$basearch',
@@ -8,7 +8,7 @@ class yum::tmzpuppetrepo::fedora {
     }
 }
 
-class yum::tmzpuppetrepo::el {
+class yum::repos::tmz-puppet::el {
     yumrepo { "tmz-puppet":
         descr            => 'Puppet for EL $releasever - $basearch',
         baseurl          => 'http://tmz.fedorapeople.org/repo/puppet/epel/$releasever/$basearch',
@@ -18,7 +18,7 @@ class yum::tmzpuppetrepo::el {
     }
 }
 
-class yum::tmzpuppetrepo {
+class yum::repos::tmz-puppet {
     case $operatingsystem {
         "Fedora": { include fedora }
         "CentOS": { include el }
