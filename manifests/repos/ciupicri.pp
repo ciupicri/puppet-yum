@@ -19,7 +19,7 @@ class yum::repos::ciupicri::base {
         baseurl          => "file:///mnt/misc/${operatingsystem}-ciupicri-repo",
         enabled         => '1',
         gpgcheck        => '0',
-        gpgkey          => "file:///mnt/misc/${operatingsystem}-ciupicri-repo/RPM-GPG-KEY-ciupicri",
+        gpgkey          => "file:///mnt/misc/${operatingsystem}-ciupicri-repo/RPM-GPG-KEY-Tabacioc",
         metadata_expire => '0',
         cost            => '500',
         priority        => '1',
