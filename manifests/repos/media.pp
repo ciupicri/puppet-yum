@@ -7,7 +7,7 @@ class yum::repos::media::base {
     }
 
     mount { "/mnt/misc/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD":
-        device  => "hermes.lizeanunet.tld:/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD",
+        device  => "${yum_nfs_server}:/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD",
         fstype  => "nfs",
         options => "ro",
         ensure  => mounted,

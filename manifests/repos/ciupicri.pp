@@ -7,7 +7,7 @@ class yum::repos::ciupicri::base {
     }
 
     mount { "/mnt/misc/${operatingsystem}-ciupicri-repo":
-        device  => "hermes.lizeanunet.tld:/${operatingsystem}-ciupicri-repo/${operatingsystemrelease}",
+        device  => "${yum_nfs_server}:/${operatingsystem}-ciupicri-repo/${operatingsystemrelease}",
         fstype  => "nfs",
         options => "ro",
         ensure  => mounted,
