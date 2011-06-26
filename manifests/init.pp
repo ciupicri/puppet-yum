@@ -5,6 +5,6 @@ class yum {
     include cache
 
     case $operatingsystem {
-        "CentOS": { include repos::epel }
+        "CentOS": { include repos::epel5 }
     }
 }
