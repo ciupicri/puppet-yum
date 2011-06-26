@@ -22,6 +22,7 @@ class yum::repos::tmz-puppet {
     case $operatingsystem {
         "Fedora": { include fedora }
         "CentOS": { include el }
+        "Scientific": { include el }
         default: { fail("Your operating system is unsupported") }
     }
 }
