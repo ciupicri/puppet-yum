@@ -6,5 +6,6 @@ class yum {
 
     case $operatingsystem {
         "CentOS": { include repos::epel5 }
+        "Scientific": { include repos::epel6 }
     }
 }
