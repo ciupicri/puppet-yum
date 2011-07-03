@@ -9,7 +9,7 @@ class yum::repos::media::base {
     mount { "/mnt/misc/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD":
         device  => "${yum_nfs_server}:/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD",
         fstype  => "nfs",
-        options => "ro",
+        options => "ro,intr",
         ensure  => mounted,
         require => File["/mnt/misc/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD"],
     }

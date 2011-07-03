@@ -5,7 +5,7 @@ class yum::cache::base {
     mount { "/var/cache/yum":
         device  => "hermes.lizeanunet.tld:/${operatingsystem}-yum-cache",
         fstype  => "nfs",
-        options => "rw",
+        options => "rw,intr",
         ensure  => mounted,
     }
 
@@ -17,7 +17,7 @@ class yum::cache::base {
     mount { "/mnt/misc/yum-packages":
         device  => "${yum_nfs_server}:/${operatingsystem}-yum-packages/${operatingsystemrelease}",
         fstype  => "nfs",
-        options => "rw",
+        options => "rw,intr",
         ensure  => mounted,
         require => File["/mnt/misc/yum-packages"],
     }
