@@ -9,7 +9,7 @@ class yum::repos::ciupicri::base {
     mount { "/mnt/misc/${operatingsystem}-ciupicri-repo":
         device  => "${yum_nfs_server}:/${operatingsystem}-ciupicri-repo/${operatingsystemrelease}",
         fstype  => "nfs",
-        options => "ro,intr",
+        options => "ro,intr,rsize=1048576,wsize=1048576",
         ensure  => mounted,
         require => File["/mnt/misc/${operatingsystem}-ciupicri-repo"],
     }
