@@ -15,8 +15,8 @@ class yum::repos::media::base {
     }
 
     yumrepo { "media":
-        descr            => "${operatingsystem} ${operatingsystemrelease} - ${architecture} media",
-        baseurl          => "file:///mnt/misc/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD",
+        descr           => "${operatingsystem} ${operatingsystemrelease} - ${architecture} media",
+        baseurl         => "file:///mnt/misc/${operatingsystem}-${operatingsystemrelease}-${architecture}-DVD",
         enabled         => '1',
         gpgcheck        => '0',
         gpgkey          => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$basearch',
