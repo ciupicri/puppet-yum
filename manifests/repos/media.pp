@@ -3,7 +3,7 @@ class yum::repos::media {
         "Fedora": { yum::repos::media::base { "fedora": } }
         "CentOS": {
             case $operatingsystemrelease {
-                "5.7": { include centos5 }
+                "5.7": { include el5 }
             }
         }
         "Scientific": { yum::repos::media::base { "scientific": } }
