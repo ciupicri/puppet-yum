@@ -1,4 +1,4 @@
-class yum::repos::epel5 {
+class yum::repos::epel::epel5 {
     yumrepo { 'epel':
         descr       => 'Extra Packages for Enterprise Linux 5 - $basearch',
         mirrorlist  => 'http://mirrors.fedoraproject.org/mirrorlist?repo=epel-5&arch=$basearch',
