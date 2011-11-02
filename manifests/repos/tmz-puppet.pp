@@ -13,6 +13,7 @@ class yum::repos::tmz-puppet::el {
         descr            => 'Puppet for EL $releasever - $basearch',
         baseurl          => $operatingsystem ? {
             "Scientific" => $operatingsystemrelease ? {
+                "6.0" => 'http://tmz.fedorapeople.org/repo/puppet/epel/6/$basearch',
                 "6.1" => 'http://tmz.fedorapeople.org/repo/puppet/epel/6/$basearch',
                 default => 'http://tmz.fedorapeople.org/repo/puppet/epel/$releasever/$basearch',
             },
