@@ -4,6 +4,7 @@ class yum::repos::media {
         "CentOS": {
             case $operatingsystemrelease {
                 "5.7": { include el5 }
+                "6.0": { yum::repos::media::base { "centos": } }
             }
         }
         "Scientific": { yum::repos::media::base { "scientific": } }
